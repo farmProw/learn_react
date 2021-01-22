@@ -12,25 +12,5 @@ grid-template-areas:
   grid-template-columns: 2fr 10fr;
   grid-gap:10px;
 }
-.header{
-grid-area: hed;
-background-color:red;
 
-}
-.header img{
-  width: 50px;
-  height: 60px;
-}
-.nav{
- grid-area: nav;
- background-color: greenyellow;
- text-align: center;
-}
-.content{
- grid-area: con;
- background-color: hotpink;
-}
-.content img{
-  height: 330px;
-  width: 100%;
-}
+
