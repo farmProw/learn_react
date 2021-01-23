@@ -1,15 +1,15 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import Header from './../src/components/Header'
-import Navbar from './../src/components/Navbar'
-import Profile from './../src/components/Profile'
+import Header from './components/Header/Header'
+import Navbar from './components/Navbar/Navbar'
+import Profile from './components/Profile/Profile'
 
 const App = () => {
   return (
     <div className="app-wrapper">
       <Header />
-      <Navbar/>
-      <Profile/>
+      <Navbar />
+      <Profile />
 
     </div>
   );
