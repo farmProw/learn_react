@@ -13,4 +13,7 @@ grid-template-areas:
   grid-gap:10px;
 }
 
-
+.app-wrapper-content{
+  grid-area: con;
+  background-color: aqua;
+}
