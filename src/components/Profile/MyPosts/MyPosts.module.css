@@ -3,4 +3,6 @@
    grid-area: con;
    background-color: hotpink;
   }
- 
+ .postsBlock{
+     padding: 10px;
+ }
