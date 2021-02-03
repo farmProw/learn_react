@@ -1,5 +1,5 @@
 import s from'./Header.module.css'
-const Header =()=>{
+const Header =(props)=>{
    return(
       <header className={s.header}>
       <img className={s.img} src="https://memegenerator.net/img/instances/64572741.jpg">
