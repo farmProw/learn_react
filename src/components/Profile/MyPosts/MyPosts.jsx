@@ -7,12 +7,14 @@ const MyPosts = (props) => {
     let getLinkTextarea = React.createRef();
 
     let getSetFn =()=>{
-        props.addPost();
+        // props.addPost()
+        props.dispatch({type:'ADD-POST'});
     };
 
     let changePost =()=>{
         let text = getLinkTextarea.current.value;
-        props.updateNewPostText(text)
+        let action = {type: 'UPDATE-NEW-POST-TEXT', newText: text,};
+        props.dispatch(action)
     };
 
     let postsElements = props.profilePage.posts.map(e=><Post m={e.message} like={e.likesCount}/>)
