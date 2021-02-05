@@ -1,3 +1,6 @@
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
+const ADD_POST = 'ADD-POST';
 let store = {
     _state: {
         profilePage: {
@@ -22,6 +25,7 @@ let store = {
                 {message: "ddddd", id: "4"},
                 {message: "eeeee", id: "5"},
             ],
+            newMessageBody:'',
         },
 
     },
@@ -48,10 +52,25 @@ let store = {
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state)
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state)
         }
 
     }
 };
 
+export const addPostActionCreator = () =>{
+    return {
+        type: ADD_POST
+    }
+}
+
+export const updateNewPostTextActionCreator = (text) =>{
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text,
+    }
+}
 
 export default store;
