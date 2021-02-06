@@ -3,14 +3,14 @@ import {NavLink} from 'react-router-dom';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {sendMessageCreatorr, updateNewMessageBodyCreator} from "../../redax/state";
+import {sendMessageCreatorr, updateNewMessageBodyCreator} from "../../redax/dialogs-reducer";
 
 
 const Dialogs = (props) => {
 
-    const dialogsElements = props.state.messagesPage.arr1.map(e => <DialogItem name={e.name} id={e.id}/>);
+    const dialogsElements = props.state.dialogsPage.arr1.map(e => <DialogItem name={e.name} id={e.id}/>);
 
-    const messageElements = props.state.messagesPage.arr2.map(e => <Message message={e.message}/>);
+    const messageElements = props.state.dialogsPage.arr2.map(e => <Message message={e.message}/>);
 
     // = props.state.messagesPage.arr2.map(e=><Message message={e.message}/> );
 
