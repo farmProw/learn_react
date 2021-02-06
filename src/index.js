@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from "./redax/state";
+import store from "./redax/redux-store";
 
 let rerenderFn = (state) => {
+
     ReactDOM.render(
         <React.StrictMode>
             <App state={state}
@@ -14,7 +15,9 @@ let rerenderFn = (state) => {
         document.getElementById('root')
     );
 };
-store.subscribe(rerenderFn)
+store.subscribe(()=> {
+    let state=store.getState()
+    rerenderFn(state)})
 rerenderFn(store.getState())
 
 // If you want to start measuring performance in your app, pass a function

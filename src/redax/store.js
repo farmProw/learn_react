@@ -28,7 +28,7 @@ let store = {
             ],
             newMessageBody:'',
         },
-        sidebarReducer: undefined
+        sidebarReducer: {}
 
 
     },

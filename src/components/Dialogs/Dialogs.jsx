@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {sendMessageCreatorr, updateNewMessageBodyCreator} from "../../redax/dialogs-reducer";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redax/dialogs-reducer";
 
 
 const Dialogs = (props) => {
@@ -17,7 +17,7 @@ const Dialogs = (props) => {
     let newMessageBody = props.state.newMessageBody;
 
     let onSendMessageClick = () => {
-        props.dispatch(sendMessageCreatorr())
+        props.dispatch(sendMessageCreator())
     }
     let onNewMessageChange = (e) => {
         let body = e.target.value;
