@@ -5,11 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./redax/redux-store";
 
-let rerenderFn = (state) => {
+let rerenderFn = () => {
 
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state}
+            <App
+                store = {store}
+                state={store.getState()}
             dispatch = {store.dispatch.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')

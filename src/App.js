@@ -10,7 +10,7 @@ import News from "./components/News/News";
 
 
 const App = (props) => {
-
+// debugger
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -18,8 +18,10 @@ const App = (props) => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path="/profile" render={() => <Profile
-                               profilePage={props.state.profilePage}
-                               dispatch = {props.dispatch}/>}></Route>
+                               // profilePage={props.state.profilePage}
+                               // dispatch = {props.dispatch}
+                        store={props.store}
+                    />}></Route>
                     <Route path="/dialogs" render={() => <Dialogs
                                state={props.state}
                                dispatch = {props.dispatch}/>}></Route>

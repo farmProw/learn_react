@@ -9,15 +9,15 @@ const MyPosts = (props) => {
 
     let getLinkTextarea = React.createRef();
 
-    let getSetFn =()=>{
-        // props.addPost()
-        props.dispatch(addPostActionCreator());
+    let onAddPost =()=>{
+         props.addPost()
+        // props.dispatch(addPostActionCreator());
     };
 
-    let changePost =()=>{
+    let onPostChange =()=>{
         let text = getLinkTextarea.current.value;
-        let action = updateNewPostTextActionCreator(text);
-        props.dispatch(action)
+        props.updateNewPostTextActionCreator(text);
+
     };
 
     let postsElements = props.profilePage.posts.map(e=><Post m={e.message} like={e.likesCount}/>)
@@ -27,10 +27,10 @@ const MyPosts = (props) => {
             <h3>My post</h3>
             <div>
                 <div>
-                    <textarea onChange={changePost} value={props.profilePage.newPostText} ref={getLinkTextarea}/>
+                    <textarea onChange={onPostChange} value={props.profilePage.newPostText} ref={getLinkTextarea}/>
                 </div>
                 <div>
-                    <button  onClick={getSetFn}>Add Post</button>
+                    <button  onClick={onAddPost}>Add Post</button>
                 </div>
             </div>
             <div className={s.item}>
