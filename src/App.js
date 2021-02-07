@@ -1,5 +1,4 @@
 import './App.css';
-import Dialogs from './components/Dialogs/Dialogs';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
@@ -7,6 +6,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route} from 'react-router-dom';
 import News from "./components/News/News";
+import DialogsContainer from "./components/Dialogs/DialogsConteiner";
 
 
 const App = (props) => {
@@ -22,8 +22,8 @@ const App = (props) => {
                                // dispatch = {props.dispatch}
                         store={props.store}
                     />}></Route>
-                    <Route path="/dialogs" render={() => <Dialogs
-                               state={props.state}
+                    <Route path="/dialogs" render={() => <DialogsContainer
+                               store={props.store}
                                dispatch = {props.dispatch}/>}></Route>
                     <Route path="/news" render={() => <News/>}></Route>
                     <Route path="/music" render={() => <Music/>}></Route>

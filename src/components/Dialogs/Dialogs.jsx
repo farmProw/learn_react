@@ -8,20 +8,16 @@ import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redax/dialo
 
 const Dialogs = (props) => {
 
-    const dialogsElements = props.state.dialogsPage.arr1.map(e => <DialogItem name={e.name} id={e.id}/>);
+    const dialogsElements = props.dialogsPage.arr1.map(e => <DialogItem name={e.name} id={e.id}/>);
 
-    const messageElements = props.state.dialogsPage.arr2.map(e => <Message message={e.message}/>);
+    const messageElements = props.dialogsPage.arr2.map(e => <Message message={e.message}/>);
 
-    // = props.state.messagesPage.arr2.map(e=><Message message={e.message}/> );
-
-    let newMessageBody = props.state.newMessageBody;
-
-    let onSendMessageClick = () => {
-        props.dispatch(sendMessageCreator())
+    let btnClick = () => {
+        props.onSendMessageClick()
     }
-    let onNewMessageChange = (e) => {
+    let textAreaChange = (e) => {
         let body = e.target.value;
-        props.dispatch(updateNewMessageBodyCreator(body))
+        props.onNewMessageChange(body)
     }
     return (
         <div className={s.dialogs}>
@@ -30,10 +26,10 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 <div>{messageElements}</div>
-                <div>< textarea value={newMessageBody} onChange={onNewMessageChange}
+                <div>< textarea value={props.newMessageBody} onChange={textAreaChange}
                                 placeholder='Enter your message'></textarea></div>
                 <div>
-                    <button onClick={onSendMessageClick}>send</button>
+                    <button onClick={btnClick}>send</button>
                 </div>
             </div>
         </div>
