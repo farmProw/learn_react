@@ -10,7 +10,7 @@ const MyPosts = (props) => {
     let getLinkTextarea = React.createRef();
 
     let onAddPost =()=>{
-         props.addPost()
+        props.addPost()
         // props.dispatch(addPostActionCreator());
     };
 
