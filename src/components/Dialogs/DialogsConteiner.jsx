@@ -43,7 +43,7 @@ import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
 let m2 = (state) => {
     return {
         dialogsPage: state.dialogsPage,
-        newMessageBody:state.dialogsPage.newMessageBody
+        newMessageBody:state.dialogsPage.newMessageBody,
     }
 };
 

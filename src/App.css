@@ -4,6 +4,8 @@
   margin: 0 auto;
   min-height: 100%;
   max-width:  1200px;
+  padding-left: 10px;
+  padding-right: 10px;
 
 grid-template-areas: 
 "hed hed"
@@ -18,4 +20,8 @@ grid-template-areas:
 .app-wrapper-content{
   grid-area: con;
   background-color: aqua;
+}
+.circlePreloder{
+  width: 30px;
+  height: 30px;
 }

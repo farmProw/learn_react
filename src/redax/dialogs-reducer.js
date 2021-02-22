@@ -23,14 +23,16 @@ let initialState = {
      switch (action.type) {
          case UPDATE_NEW_MESSAGE_BODY: {
              let stateCopy = {...state};
-             state.newMessageBody = action.body;
-             return state;
+             stateCopy.newMessageBody = action.body;
+             return stateCopy;
          }
          case SEND_MESSAGE: {
-             let body = state.newMessageBody;
-             state.arr2.push({message: body, id: 6})
-             state.newMessageBody = ''
-             return state;
+             let stateCopy = {...state};
+             let body = stateCopy.newMessageBody;
+             // stateCopy.arr2 = [...state.arr2]
+             stateCopy.arr2.push({message: body, id: 6})
+             stateCopy.newMessageBody = ''
+             return stateCopy;
          }
          default:
              return state;

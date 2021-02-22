@@ -12,6 +12,11 @@ const Dialogs = (props) => {
 
     const messageElements = props.dialogsPage.arr2.map(e => <Message message={e.message}/>);
 
+
+    console.log(dialogsElements);
+
+
+
     let btnClick = () => {
         props.onSendMessageClick()
     }
@@ -20,6 +25,7 @@ const Dialogs = (props) => {
         props.onNewMessageChange(body)
     }
     return (
+
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
                 {dialogsElements}

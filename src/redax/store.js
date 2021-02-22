@@ -29,8 +29,6 @@ let store = {
             newMessageBody:'',
         },
         sidebarReducer: {}
-
-
     },
     getState() {
         return this._state;

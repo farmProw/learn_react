@@ -27,7 +27,7 @@ const MyPosts = (props) => {
             <h3>My post</h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChange} value={props.profilePage.newPostText} ref={getLinkTextarea}/>
+                    <textarea onChange={onPostChange} value={props.newPostText} ref={getLinkTextarea}/>
                 </div>
                 <div>
                     <button  onClick={onAddPost}>Add Post</button>
