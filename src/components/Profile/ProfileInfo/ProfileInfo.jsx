@@ -10,6 +10,11 @@ const ProfileInfo = (props) => {
         <div>
             <div className={s.descriptionBlock}>
                 <img className={s.img}
+                     src="https://www.tandemconstruction.com/sites/default/files/styles/project_slider_main/public/images/project-images/IMG-Fieldhouse-10.jpg?itok=Whi8hHo9 "></img>
+
+            </div>
+            <div className={s.descriptionBlock}>
+                <img className={s.img}
                      src={props.profile.photos.large}></img>
                 ava + description
             </div>
