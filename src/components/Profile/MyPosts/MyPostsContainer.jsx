@@ -1,7 +1,6 @@
 import React from 'react';
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redax/profile-reducer";
+import {addPostActionCreator, } from "../../../redax/profile-reducer";
 import MyPosts from "./MyPosts";
-import StoreContext from "../../../StoreContext";
 import {connect} from "react-redux";
 
 
@@ -39,11 +38,8 @@ let m1=(state)=>{
 }
 let m2 =(dispatch)=>{
     return{
-        updateNewPostTextActionCreator:(text)=>{
-    dispatch(updateNewPostTextActionCreator(text))
-        },
-        addPost:()=>{
-            dispatch(addPostActionCreator())
+        addPost:(text)=>{
+            dispatch(addPostActionCreator(text))
         }
     }
 }

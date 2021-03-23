@@ -1,23 +1,16 @@
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from 'react';
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redax/profile-reducer";
+import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validators/validators";
+import {TextArea} from "../../Common/Preloder/FormsControl";
 
-
+const maxLengthCreator10 = maxLengthCreator(10);
 
 const MyPosts = (props) => {
 
-    let getLinkTextarea = React.createRef();
-
-    let onAddPost =()=>{
-        props.addPost()
-        // props.dispatch(addPostActionCreator());
-    };
-
-    let onPostChange =()=>{
-        let text = getLinkTextarea.current.value;
-        props.updateNewPostTextActionCreator(text);
-
+    let onAddPost =(values)=>{
+        props.addPost(values.newPostText)
     };
 
     let postsElements = props.profilePage.posts.map(e=><Post m={e.message} like={e.likesCount}/>)
@@ -26,12 +19,7 @@ const MyPosts = (props) => {
         <div className={s.postsBlock}>
             <h3>My post</h3>
             <div>
-                <div>
-                    <textarea onChange={onPostChange} value={props.newPostText} ref={getLinkTextarea}/>
-                </div>
-                <div>
-                    <button  onClick={onAddPost}>Add Post</button>
-                </div>
+               <AddNewPostFormRedux onSubmit={onAddPost}/>
             </div>
             <div className={s.item}>
                 {postsElements}
@@ -39,5 +27,22 @@ const MyPosts = (props) => {
         </div>
     )
 }
+
+const AddNewPostForm =(props)=>{
+    return(
+        <form onSubmit={props.handleSubmit}>
+            <Field
+                type={'text'}
+                name={'newPostText'}
+                component={TextArea}
+                placeholder={'write post'}
+                validate={[required,maxLengthCreator10]}/>
+            <button>Add Post</button>
+        </form>
+    )
+}
+
+const AddNewPostFormRedux = reduxForm({form:"newPostText"})(AddNewPostForm)
+
 
 export default MyPosts;

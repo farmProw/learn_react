@@ -1,18 +1,21 @@
 import * as React from "react";
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../redax/profile-reducer";
-import {withRouter} from "react-router";
+import {getStatus, getUserProfile, setUserProfile, updateStatus} from "../../redax/profile-reducer";
+import {Redirect, withRouter} from "react-router";
+import {withAuthRedirect} from "../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
-        userId = userId?userId:2;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
-            this.props.setUserProfile(response.data);
-        })
+        userId = userId?userId:this.props.autorizedUserId;
+         if(!userId) this.props.history.push('/login');
+        this.props.getUserProfile(userId);
+         this.props.getStatus(userId);
+
+
     }
 
     render() {
@@ -22,13 +25,37 @@ class ProfileContainer extends React.Component {
     }
 }
 
-//розкукожка пропса , щоб звільнити його властивості і не було в наступному етапі props.props...
-let mapDispatchToState = (state) => ({
-    profile: state.profilePage.profile,
-})
-//пишем ({}) замість ретурн
+// let authRedirectComponent = withAuthRedirect(ProfileContainer);
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
-export default connect(mapDispatchToState, {
-    setUserProfile,
-})(WithUrlDataContainerComponent)
+// let mapStateToPropsForRedirect = (state) => ({
+//     isAuth: state.auth.isAuth,
+// });
+//
+// authRedirectComponent=connect(mapStateToPropsForRedirect)(authRedirectComponent)
+
+// let authRedirectComponent = (props) =>{
+//     if(!this.props.isAuth) return <Redirect to={'/login'} />
+//     return <ProfileContainer {...props}/>
+// }
+//розкукожка пропса , щоб звільнити його властивості і не було в наступному етапі props.props...
+
+
+
+let mapStateToProps = (state) => ({
+    profile: state.profilePage.profile,
+    status: state.profilePage.status,
+    autorizedUserId:state.auth.id,
+});
+//пишем ({}) замість ретурн
+export default compose(
+    connect(mapStateToProps, { getStatus,
+        updateStatus,
+        getUserProfile,}),
+    withRouter,
+    withAuthRedirect,
+
+)(ProfileContainer)
+// let WithUrlDataContainerComponent = withRouter(authRedirectComponent);
+//
+// export default connect(mapStateToProps, {getUserProfile
+// })(WithUrlDataContainerComponent)

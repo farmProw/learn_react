@@ -1,12 +1,9 @@
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
 import React from "react";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redax/dialogs-reducer";
+import {sendMessageCreator,} from "../../redax/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../StoreContext";
 import {connect} from "react-redux";
-import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
-import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
+import {withAuthRedirect} from "../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 // const DialogsContainer = (props) => {
@@ -43,24 +40,20 @@ import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
 let m2 = (state) => {
     return {
         dialogsPage: state.dialogsPage,
-        newMessageBody:state.dialogsPage.newMessageBody,
+        newMessageBody: state.dialogsPage.newMessageBody,
     }
 };
 
 let m1 = (dispatch) => {
     return {
-        onNewMessageChange: (body) => {
-            dispatch(updateNewMessageBodyCreator(body))
-        },
-        onSendMessageClick: () => {
-            dispatch(sendMessageCreator())
+        onSendMessageClick: (body) => {
+            dispatch(sendMessageCreator(body))
         },
     }
 };
 
-
-const DialogsContainer = connect(m2, m1)(Dialogs);
-
-
-
-export default DialogsContainer;
+export default compose(connect(m2, m1),
+    withAuthRedirect)
+(Dialogs);
+// const DialogsContainer = connect(m2, m1)(authRedirectComponent);
+// export default DialogsContainer;

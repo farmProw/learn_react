@@ -21,8 +21,9 @@ width: 300px;
     align-self: center;
 }
 .user__btn_wrapper button{
-    background-color: green;
-    color: #ffffff;
+    /*background-color: green;*/
+    /*backface-visibility: ;*/
+    /*color: #ffffff;*/
     border: none;
     width: 120px;
     text-transform: uppercase;

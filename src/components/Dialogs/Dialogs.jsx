@@ -1,10 +1,12 @@
 import s from './Dialogs.module.css';
-import {NavLink} from 'react-router-dom';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redax/dialogs-reducer";
+import {Field, reduxForm} from "redux-form";
+import {TextArea} from "../Common/Preloder/FormsControl";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
 
+const maxLengthCreator50 = maxLengthCreator(50);
 
 const Dialogs = (props) => {
 
@@ -17,13 +19,14 @@ const Dialogs = (props) => {
 
 
 
-    let btnClick = () => {
-        props.onSendMessageClick()
+    let addNewMessageBody = (values) => {
+        debugger
+         props.onSendMessageClick(values.newMessageBody)
     }
-    let textAreaChange = (e) => {
-        let body = e.target.value;
-        props.onNewMessageChange(body)
-    }
+
+
+    // if(!props.isAuth) return <Redirect to={'/login'} />
+
     return (
 
         <div className={s.dialogs}>
@@ -32,13 +35,23 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 <div>{messageElements}</div>
-                <div>< textarea value={props.newMessageBody} onChange={textAreaChange}
-                                placeholder='Enter your message'></textarea></div>
-                <div>
-                    <button onClick={btnClick}>send</button>
-                </div>
+               <AddMessageFormRedux onSubmit={addNewMessageBody}/>
             </div>
         </div>
     )
 }
+
+
+
+const AddMessageForm =(props)=>{
+    return(
+        <form onSubmit={props.handleSubmit}>
+         <Field placeholder={"write your message"} name={'newMessageBody'} component={TextArea} validate={[required,maxLengthCreator50]}/>
+            <button>send</button>
+        </form>
+    )
+}
+
+const AddMessageFormRedux = reduxForm({form:"dialogAddMessageForm"})(AddMessageForm);
+
 export default Dialogs
